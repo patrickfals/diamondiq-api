@@ -4,7 +4,10 @@ from urllib.error import HTTPError, URLError
 
 from fastapi import FastAPI, HTTPException
 
-app = FastAPI(title="DiamondIQ Baseball API")
+app = FastAPI(
+    title="DiamondIQ Baseball API",
+    servers=[{"url": "https://diamondiq-api.onrender.com"}]
+)
 
 
 @app.get("/health")
