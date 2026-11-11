@@ -1,7 +1,12 @@
 import json
+import os
+import secrets
+from typing import Literal
+from pydantic import BaseModel, Field
+from fastapi import Header
+from orchestrate_client import analyze_at_bat
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
-
 from fastapi import FastAPI, HTTPException
 
 app = FastAPI(
@@ -87,3 +92,44 @@ def get_at_bat(game_id: int, at_bat_index: int):
         "outcome": at_bat.get("result", {}).get("event"),
         "pitches": pitches
     }
+
+
+class AnalyzeAtBatRequest(BaseModel):
+    game_id: int = Field(gt=0)
+    at_bat_index: int = Field(ge=0)
+    knowledge_level: Literal[
+        "I don't know baseball",
+        "I somewhat know the rules",
+        "I watch a good amount",
+        "I'm a scout / super fan"
+    ]
+
+
+@app.post("/analyze-at-bat")
+def analyze_at_bat_endpoint(
+    request: AnalyzeAtBatRequest,
+    x_diamondiq_test_key: str | None = Header(default=None)
+):
+    # Restrict access while testing the IBM integration
+    expected_key = os.environ.get("DIAMONDIQ_TEST_KEY")
+
+    if (
+        not expected_key
+        or not x_diamondiq_test_key
+        or not secrets.compare_digest(x_diamondiq_test_key, expected_key)
+    ):
+        raise HTTPException(status_code=403, detail="Forbidden")
+
+    try:
+        story = analyze_at_bat(
+            request.game_id,
+            request.at_bat_index,
+            request.knowledge_level
+        )
+    except Exception:
+        raise HTTPException(
+            status_code=502,
+            detail="Unable to generate IBM analysis"
+        )
+
+    return {"story": story}
