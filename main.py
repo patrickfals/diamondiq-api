@@ -18,7 +18,7 @@ app = FastAPI(
 # independently verified to produce accurate entering-game statistics.
 # See Task 4 Phase 1 investigation for game 777245.
 # Do not add a game ID here without establishing the statistical cutoff.
-VERIFIED_STATS_GAME_IDS = {(777245, 8)}
+VERIFIED_STATS_AT_BATS = {(777245, 8)}
 
 
 @app.get("/health")
