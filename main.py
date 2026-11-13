@@ -1,6 +1,8 @@
 import json
+import logging
 import os
 import secrets
+from datetime import datetime, timezone
 from typing import Literal
 from pydantic import BaseModel, Field
 from fastapi import Header
@@ -8,6 +10,9 @@ from orchestrate_client import analyze_at_bat
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 from fastapi import FastAPI, HTTPException
+from snapshot import create_snapshot_token, verify_snapshot_token
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="DiamondIQ Baseball API",
@@ -278,3 +283,182 @@ def analyze_at_bat_endpoint(
         )
 
     return {"story": story}
+
+
+# ---------------------------------------------------------------------------
+# Snapshot redemption
+# ---------------------------------------------------------------------------
+# POST /snapshot/redeem is the ONLY endpoint registered as a Pitch Scout tool
+# in IBM Orchestrate.  It accepts a signed token and returns a spoiler-safe
+# pitch prefix.  The existing GET /games/{game_id}/at-bats/{at_bat_index}
+# endpoint is not registered as an agent tool.
+#
+# Token creation is strictly internal (snapshot.create_snapshot_token).
+# No HTTP endpoint issues tokens.
+# ---------------------------------------------------------------------------
+
+class RedeemSnapshotRequest(BaseModel):
+    token: str
+
+
+@app.post("/snapshot/redeem")
+def redeem_snapshot(request: RedeemSnapshotRequest):
+    """
+    Redeem a signed snapshot token and return a spoiler-safe pitch prefix.
+
+    The token was created internally by create_snapshot_token and encodes
+    (game_id, at_bat_index, revealed_count).  The backend verifies the HMAC
+    before using any value from the token.
+
+    Spoiler-safety guarantees
+    -------------------------
+    - Only pitches 1 … revealed_count are returned.
+    - `outcome` is null unless revealed_count >= total_pitches (is_complete).
+    - `total_pitches` is omitted when is_complete is false so the agent
+      cannot infer the remaining pitch count.
+    - Entering-game AVG / ERA are included (pre-game, non-spoiler).
+    - Full-game lines and postgame season totals are never included.
+
+    Logging
+    -------
+    Each redemption is logged at INFO level with timestamp, game ID, at-bat
+    index, authorized count, and outcome status.  Tokens and secrets are
+    never logged.
+    """
+    # --- Verify token ---
+    try:
+        game_id, at_bat_index, revealed_count = verify_snapshot_token(request.token)
+    except PermissionError:
+        raise HTTPException(status_code=403, detail="Invalid snapshot token")
+    except ValueError as exc:
+        msg = str(exc)
+        if "SNAPSHOT_SECRET" in msg:
+            # Configuration error: secret is missing server-side
+            raise HTTPException(status_code=503, detail="Snapshot signing not configured")
+        raise HTTPException(status_code=400, detail=f"Malformed snapshot token: {msg}")
+
+    # --- Fetch MLB game data ---
+    url = f"https://statsapi.mlb.com/api/v1.1/game/{game_id}/feed/live"
+    try:
+        with urlopen(url, timeout=15) as response:
+            game_data = json.load(response)
+    except (HTTPError, URLError, TimeoutError, ValueError):
+        logger.warning(
+            "snapshot_redeem game=%d at_bat=%d count=%d status=mlb_error",
+            game_id, at_bat_index, revealed_count,
+        )
+        raise HTTPException(status_code=502, detail="Unable to retrieve MLB game data")
+
+    # --- Locate the at-bat ---
+    plays = game_data.get("liveData", {}).get("plays", {}).get("allPlays", [])
+    at_bat = next(
+        (play for play in plays
+         if play.get("about", {}).get("atBatIndex") == at_bat_index),
+        None,
+    )
+    if at_bat is None:
+        logger.warning(
+            "snapshot_redeem game=%d at_bat=%d count=%d status=not_found",
+            game_id, at_bat_index, revealed_count,
+        )
+        raise HTTPException(status_code=404, detail="At-bat not found")
+
+    # --- Collect all pitch events (isPitch == True) ---
+    all_pitch_events = [
+        event for event in at_bat.get("playEvents", [])
+        if event.get("isPitch")
+    ]
+    total_pitches = len(all_pitch_events)
+
+    # --- Validate revealed_count against actual total ---
+    # A count larger than total_pitches has no meaningful pitch data to return.
+    if revealed_count > total_pitches:
+        logger.warning(
+            "snapshot_redeem game=%d at_bat=%d count=%d total=%d status=count_exceeds_total",
+            game_id, at_bat_index, revealed_count, total_pitches,
+        )
+        raise HTTPException(
+            status_code=404,
+            detail="revealed_count exceeds available pitches",
+        )
+
+    is_complete = (revealed_count >= total_pitches)
+
+    # --- Build pitch list: only pitches 1 … revealed_count ---
+    authorized_events = all_pitch_events[:revealed_count]
+    pitches = []
+    for event in authorized_events:
+        details   = event.get("details") or {}
+        pitch_data = event.get("pitchData") or {}
+        coordinates = pitch_data.get("coordinates") or {}
+        pitches.append({
+            "number":           event.get("pitchNumber"),
+            "type":             (details.get("type") or {}).get("description"),
+            "result":           details.get("description"),
+            "velocity_mph":     pitch_data.get("startSpeed"),
+            "plate_x":          coordinates.get("pX"),
+            "plate_z":          coordinates.get("pZ"),
+            "count_after_pitch": event.get("count"),
+        })
+
+    matchup = at_bat.get("matchup", {})
+    about   = at_bat.get("about", {})
+
+    # --- Outcome: only when complete ---
+    outcome = at_bat.get("result", {}).get("event") if is_complete else None
+
+    # --- Entering-game stats (pre-game, non-spoiler) ---
+    # Only for verified at-bats.  Extracted independently so a failure in one
+    # does not suppress the other.  Full-game lines and postgame season totals
+    # are never returned; _extract_batter_stats / _extract_pitcher_stats
+    # already subtract this game's contribution.
+    batter_stats  = None
+    pitcher_stats = None
+    if (game_id, at_bat_index) in VERIFIED_STATS_AT_BATS:
+        batter_id  = matchup.get("batter", {}).get("id")
+        pitcher_id = matchup.get("pitcher", {}).get("id")
+        boxscore_teams = (
+            game_data.get("liveData", {})
+                     .get("boxscore", {})
+                     .get("teams", {})
+        )
+        try:
+            batter_stats = _extract_batter_stats(boxscore_teams, batter_id)
+        except Exception:
+            batter_stats = None
+        try:
+            pitcher_stats = _extract_pitcher_stats(boxscore_teams, pitcher_id)
+        except Exception:
+            pitcher_stats = None
+
+    # --- Log redemption (no token, no secret) ---
+    logger.info(
+        "snapshot_redeem ts=%s game=%d at_bat=%d authorized_count=%d "
+        "is_complete=%s status=ok",
+        datetime.now(timezone.utc).isoformat(),
+        game_id,
+        at_bat_index,
+        revealed_count,
+        is_complete,
+    )
+
+    # --- Build response ---
+    # total_pitches is withheld when incomplete to avoid leaking future pitch count.
+    response_body: dict = {
+        "game_id":          game_id,
+        "at_bat_index":     at_bat_index,
+        "revealed_count":   revealed_count,
+        "is_complete":      is_complete,
+        "batter":           matchup.get("batter", {}).get("fullName"),
+        "pitcher":          matchup.get("pitcher", {}).get("fullName"),
+        "inning":           about.get("inning"),
+        "half_inning":      about.get("halfInning"),
+        "outcome":          outcome,
+        "pitches":          pitches,
+        "batter_stats":     batter_stats,
+        "pitcher_stats":    pitcher_stats,
+    }
+    if is_complete:
+        response_body["total_pitches"] = total_pitches
+
+    return response_body

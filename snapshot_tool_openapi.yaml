@@ -1,0 +1,256 @@
+openapi: "3.0.3"
+info:
+  title: "DiamondIQ Snapshot Tool"
+  description: >
+    Single-operation OpenAPI specification for the DiamondIQ Pitch Scout tool.
+
+    This file is intended for registration in IBM watsonx Orchestrate as the
+    tool definition for DiamondIQ Pitch Scout.  It exposes exactly one
+    operation: POST /snapshot/redeem.
+
+    The tool accepts only a signed opaque token.  The token was created
+    internally by the DiamondIQ backend and encodes the game ID, at-bat index,
+    and authorized pitch count with an HMAC-SHA256 signature.  The agent
+    cannot modify those values without invalidating the token.
+
+    This file must NOT be used to register the full /games/{game_id}/at-bats/{at_bat_index}
+    endpoint or any token-issuing operation.  Those endpoints are not agent tools.
+  version: "1.0.0"
+servers:
+  - url: "https://diamondiq-api.onrender.com"
+    description: "DiamondIQ production API"
+
+paths:
+  /snapshot/redeem:
+    post:
+      operationId: redeem_snapshot
+      summary: "Retrieve a spoiler-safe pitch prefix using a signed snapshot token"
+      description: >
+        Redeems a signed snapshot token and returns the pitch events authorized
+        by that token.  The backend verifies the HMAC signature and enforces the
+        revealed pitch count.  Future pitches and the final outcome are withheld
+        until the snapshot is complete.
+
+        When an authorized snapshot token is provided, call this tool once using
+        the exact token.  Never invent or modify tokens.  Base all pitch
+        observations only on the returned data.  Never assume pitches beyond
+        revealed_count.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RedeemSnapshotRequest"
+      responses:
+        "200":
+          description: >
+            Spoiler-safe pitch prefix.  The `outcome` field is null unless
+            `is_complete` is true.  The `total_pitches` field is present only
+            when `is_complete` is true.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AtBatSnapshot"
+        "400":
+          description: "Malformed token (base64 decode failure, wrong structure, or non-integer fields)"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorDetail"
+        "403":
+          description: "Invalid HMAC signature — token has been tampered with"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorDetail"
+        "404":
+          description: "At-bat not found, or revealed_count exceeds available pitches"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorDetail"
+        "502":
+          description: "MLB Stats API upstream failure"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorDetail"
+        "503":
+          description: "Snapshot signing not configured on the server"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorDetail"
+
+components:
+  schemas:
+
+    RedeemSnapshotRequest:
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          type: string
+          description: >
+            Opaque HMAC-signed snapshot token issued by the DiamondIQ backend.
+            Encodes game_id, at_bat_index, and revealed_count.
+            Do not modify this value.
+
+    Pitch:
+      type: object
+      description: "A single pitch event from the authorized prefix"
+      properties:
+        number:
+          type: integer
+          description: "1-based pitch number within the at-bat"
+          minimum: 1
+        type:
+          type: string
+          description: "Pitch type name (e.g. Four-Seam Fastball, Slurve, Changeup)"
+          nullable: true
+        result:
+          type: string
+          description: "Pitch result description (e.g. Called Strike, Ball, Foul)"
+          nullable: true
+        velocity_mph:
+          type: number
+          format: float
+          description: "Release speed in miles per hour"
+          nullable: true
+        plate_x:
+          type: number
+          format: float
+          description: "Horizontal position at the plate in feet (negative = inside to right-handed batter)"
+          nullable: true
+        plate_z:
+          type: number
+          format: float
+          description: "Vertical position at the plate in feet above ground"
+          nullable: true
+        count_after_pitch:
+          type: object
+          nullable: true
+          description: "Ball-strike-out count immediately after the pitch was thrown"
+          properties:
+            balls:
+              type: integer
+              minimum: 0
+            strikes:
+              type: integer
+              minimum: 0
+            outs:
+              type: integer
+              minimum: 0
+
+    AtBatSnapshot:
+      type: object
+      description: >
+        Spoiler-safe pitch prefix.  Contains only the authorized pitches.
+        Future pitches, the final outcome (before completion), total pitch
+        count (before completion), and postgame statistics are withheld.
+      required:
+        - game_id
+        - at_bat_index
+        - revealed_count
+        - is_complete
+        - batter
+        - pitcher
+        - inning
+        - half_inning
+        - outcome
+        - pitches
+      properties:
+        game_id:
+          type: integer
+          description: "MLB game identifier"
+        at_bat_index:
+          type: integer
+          description: "Zero-based at-bat index within the game"
+        revealed_count:
+          type: integer
+          description: "Number of pitches returned (equals length of pitches array)"
+          minimum: 0
+        total_pitches:
+          type: integer
+          description: >
+            Total pitches in the at-bat.  Present ONLY when is_complete is true.
+            Withheld when incomplete to avoid revealing future pitch count.
+          minimum: 1
+        is_complete:
+          type: boolean
+          description: "True when revealed_count equals the total pitches in the at-bat"
+        batter:
+          type: string
+          description: "Batter full name"
+          nullable: true
+        pitcher:
+          type: string
+          description: "Pitcher full name"
+          nullable: true
+        inning:
+          type: integer
+          description: "Inning number"
+          nullable: true
+        half_inning:
+          type: string
+          description: "top or bottom"
+          nullable: true
+        outcome:
+          type: string
+          description: "At-bat outcome (e.g. Single, Strikeout).  Null unless is_complete is true."
+          nullable: true
+        pitches:
+          type: array
+          description: "Authorized pitch events (pitches 1 through revealed_count)"
+          items:
+            $ref: "#/components/schemas/Pitch"
+        batter_stats:
+          type: object
+          nullable: true
+          description: >
+            Entering-game batting statistics.  Values are pre-game (season total
+            minus this game's contribution).  Null if unavailable.
+          properties:
+            avg:
+              type: number
+              format: float
+              description: "Batting average entering this game, rounded to 3 decimal places"
+            hits:
+              type: integer
+              description: "Season hits entering this game"
+            at_bats:
+              type: integer
+              description: "Season at-bats entering this game"
+            basis:
+              type: string
+              enum: ["entering_game"]
+              description: "Confirms these are pre-game statistics"
+        pitcher_stats:
+          type: object
+          nullable: true
+          description: >
+            Entering-game pitching statistics.  Values are pre-game (season total
+            minus this game's contribution).  Null if unavailable.
+          properties:
+            era:
+              type: number
+              format: float
+              description: "ERA entering this game, rounded to 2 decimal places"
+            earned_runs:
+              type: integer
+              description: "Season earned runs entering this game"
+            outs_recorded:
+              type: integer
+              description: "Season outs recorded entering this game (MLB outs field, not IP)"
+            basis:
+              type: string
+              enum: ["entering_game"]
+              description: "Confirms these are pre-game statistics"
+
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: "Human-readable error message"
