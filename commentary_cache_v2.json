@@ -1,0 +1,264 @@
+{
+  "3": {
+    "commentary_by_level": {
+      "novice": "Michael Soroka started the at\u2011bat with a fastball that the umpire called a strike, giving Trevor Story a 0\u20111 count\u2014one strike against him. He threw another strike for a 0\u20112 count, then a fastball that was a ball, moving the count to 1\u20112.",
+      "learning": "Soroka delivered two four-seam fastballs, both called strikes, pushing Story to a 0-2 count. On the third pitch, another four-seam fastball was a ball, moving the count to 1-2. Soroka is still ahead and Story still has to protect with two strikes, but the ball gives Story a little breathing room.",
+      "regular": "Michael Soroka opened with a 91.9 mph four-seam fastball that was called a strike, putting Trevor Story at 0-1. He followed with a 93.1 mph fastball, another strike, for 0-2. The third fastball, 93.6 mph, was a ball, nudging the count to 1-2. Soroka is still ahead, and Story still has to protect with two strikes.",
+      "expert": "Against Trevor Story (.244 entering the game), Michael Soroka (4.70 ERA) went fastball three straight times, and each one came in harder: 91.9, 93.1, then 93.6 mph. The first two were called strikes for 0-2; the third was a ball for 1-2. Three rising fastballs in a row says Soroka is challenging Story head-on rather than working around him."
+    },
+    "evidence_pitches": [
+      1,
+      2
+    ],
+    "complete": true,
+    "elapsed_seconds": 16.288,
+    "run_id": "fb90dd725b599e0b",
+    "human_edits": {
+      "learning": {
+        "original_model_text": "Soroka delivered two four\u2011seam fastballs, both called strikes, pushing Story to a 0\u20112 count. On the third pitch, another four\u2011seam fastball was a ball, advancing the count to 1\u20112. With two strikes, Story now faces pressure, while the ball gives the pitcher a chance to finish the at\u2011bat."
+      },
+      "regular": {
+        "original_model_text": "Michael Soroka opened with a 91.9\u202fmph four\u2011seam fastball that was called a strike, putting Trevor Story on a 0\u20111 count. He followed with a 93.1\u202fmph fastball, another strike, advancing to 0\u20112. The third fastball, 93.6\u202fmph, was a ball, nudging the count to 1\u20112 and setting up the next for the pitcher."
+      },
+      "expert": {
+        "original_model_text": "Against Trevor Story (0.244 avg), Michael Soroka (4.70 ERA) threw three four\u2011seam fastballs: a 91.9\u202fmph called strike (0\u20111), a 93.1\u202fmph called strike (0\u20112), then a 93.6\u202fmph fastball that was a ball, moving the count to 1\u20112. The observation confirms two strikes followed by a ball; any strategic intent remains speculative. These pitches reflect his standard fastball repertoire, though without additional data we cannot assess effectiveness."
+      }
+    },
+    "edited": true
+  },
+  "1": {
+    "commentary_by_level": {
+      "novice": "Michael Soroka started the at-bat with a straight fastball that the umpire called a strike, so Trevor Story has zero balls and one strike. Three strikes is an out, so Story has two strikes left to work with. If the next pitch misses, the count evens up at one ball, one strike.",
+      "learning": "Michael Soroka opened with a four-seam fastball at 91.9 mph that was called a strike, putting Trevor Story in an 0-1 count. Starting with a strike puts the pitcher ahead. A ball next would even it at 1-1, while another strike would make it 0-2 and put Story in a real hole.",
+      "regular": "Michael Soroka began the top\u2011of\u2011the\u2011second at\u2011bat with a four\u2011seam fastball clocking 91.9\u202fmph, which the umpire called a strike and advanced the count to 0\u20111. Trevor Story now faces a one\u2011strike deficit; the upcoming pitch will determine whether he forces a ball to even the count or risks falling further behind.",
+      "expert": "Michael Soroka opened with a 91.9 mph four-seam fastball for a called strike, putting Trevor Story at 0-1. A first-pitch strike lets the pitcher work ahead and gives him more freedom with what comes next. Story entered hitting .244 and Soroka entered with a 4.70 ERA, so getting ahead early is exactly the edge Soroka wants."
+    },
+    "evidence_pitches": [
+      1
+    ],
+    "complete": true,
+    "elapsed_seconds": 16.738,
+    "run_id": "c2474dc42a112760",
+    "human_edits": {
+      "novice": {
+        "original_model_text": "Michael Soroka started the at-bat with a straight fastball that the umpire called a strike, so Trevor Story now has zero balls and one strike. That means he\u2019s one strike away from two more before a possible strikeout, and the next pitch will decide if the count moves toward a ball or another strike."
+      },
+      "learning": {
+        "original_model_text": "Michael Soroka opened with a four\u2011seam fastball at 91.9\u202fmph that was ruled a strike, putting Trevor Story on a 0\u20111 count. With one strike already, Story must avoid another strike to stay alive; the next pitch could add a ball, moving the count toward a more favorable 1\u20111 or 2\u20111 situation."
+      },
+      "expert": {
+        "original_model_text": "Michael Soroka delivered a four\u2011seam fastball at 91.9\u202fmph that was officially recorded as a strike, moving Trevor Story\u2019s count to 0\u20111. Story, entering with a .244 average, now has one strike against him, while Soroka, posting a 4.70 ERA, must navigate that deficit; the next pitch will reveal whether the observed strike translates into a strategic advantage."
+      }
+    },
+    "edited": true
+  },
+  "2": {
+    "commentary_by_level": {
+      "novice": "Michael Soroka threw his first pitch, a fastball, and the umpire called it a strike, so Trevor Story now has zero balls and one strike. On the next pitch, another fastball was also called a strike, moving the count to zero balls and two strikes, putting Story one strike away from a strikeout.",
+      "learning": "Michael Soroka began the at-bat with two four\u2011seam fastballs, each a called strike. After the first strike the count was 0\u20111; the second strike advanced it to 0\u20112. With two strikes, Story now faces a pressure situation where another strike would end his turn at bat.",
+      "regular": "Soroka opened the top\u20112 at\u2011bat against Trevor Story with a four\u2011seam fastball that was called a strike, putting Story at a 0\u20111 count. He followed with another four\u2011seam fastball, also a strike, advancing the count to 0\u20112. Two strikes now leave Story vulnerable to a third strike ending the plate appearance.",
+      "expert": "Michael Soroka delivered two consecutive four-seam fastballs to Trevor Story, first at 91.9 mph, then at 93.1 mph, both called strikes, moving the count from 0-1 to 0-2. Note the 1.2 mph jump on the same pitch: Soroka added velocity once he was ahead. Story, entering with a .244 average, now faces a pitcher holding a 4.70 ERA with two strikes in hand."
+    },
+    "evidence_pitches": [
+      1,
+      2
+    ],
+    "complete": true,
+    "elapsed_seconds": 14.459,
+    "run_id": "bc1770a9c0bb2887",
+    "human_edits": {
+      "expert": {
+        "original_model_text": "Michael Soroka delivered two consecutive four\u2011seam fastballs to Trevor Story\u2014first at 91.9\u202fmph, then at 93.1\u202fmph\u2014both recorded as called strikes, moving the count from 0\u20110 to 0\u20111 and then to 0\u20112. Story, entering with a .244 average, now faces a two\u2011strike count against a pitcher holding a 4.70 ERA; the data confirm the strikes but do not reveal intent."
+      }
+    },
+    "edited": true
+  },
+  "4": {
+    "commentary_by_level": {
+      "novice": "Michael Soroka began with three straight fastballs. The first two were strikes, so Story had zero balls and two strikes. The third fastball was a ball, making it one ball and two strikes. Soroka then threw a slower slurve that Story fouled, leaving the count at one ball, two strikes.",
+      "learning": "Soroka opened the at\u2011bat with three four\u2011seam fastballs. The first two were called strikes, giving Story a 0\u20112 count. A ball on the third fastball moved the count to 1\u20112. He then switched to a slower slurve, which Story fouled, keeping the count at one ball, two strikes.",
+      "regular": "Michael Soroka started the sequence with three four\u2011seam fastballs, recording two called strikes before a ball pushed the count to 1\u20112. He then changed pace, delivering a slower slurve that Trevor Story fouled, leaving the count unchanged at one ball and two strikes. The at\u2011bat remains in a high\u2011strike\u2011out pressure situation.",
+      "expert": "Michael Soroka, entering with a 4.70 ERA, opened Trevor Story's at-bat with three four-seam fastballs (91.9, 93.1 and 93.6 mph), generating two called strikes and a ball for a 1-2 count. He then introduced a 79.3 mph slurve, more than 14 mph slower than the pitch before, and Story stayed alive by fouling it off, keeping the count at 1-2."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "complete": true,
+    "elapsed_seconds": 13.352,
+    "run_id": "b01517da0058e0e7",
+    "human_edits": {
+      "expert": {
+        "original_model_text": "Michael Soroka, entering with a 4.70 ERA, opened Trevor Story\u2019s at\u2011bat with three four\u2011seam fastballs (91.9\u202fmph, 93.1\u202fmph, 93.6\u202fmph), generating two called strikes and a ball, advancing the count to 1\u20112. He then introduced a 79.3\u202fmph slurve, which Story fouled, keeping the count at one ball, two strikes. The observation shows a pitch\u2011type shift after a full\u2011count pressure scenario."
+      }
+    },
+    "edited": true
+  },
+  "6": {
+    "commentary_by_level": {
+      "novice": "Michael Soroka began the at-bat by throwing two fastballs that the umpire called strikes, giving Trevor Story a 0\u20112 count. A ball on the next fastball made it 1\u20112. Soroka then switched to a slurve, which resulted in a foul, a ball, and another foul, leaving the count even at 2\u20112.",
+      "learning": "Soroka opened with two straight fastball strikes, putting Story down 0\u20112. A fastball ball nudged the count to 1\u20112, giving the batter a chance to see a different pitch. Soroka then delivered slurves\u2014first a foul, then a ball, then another foul\u2014bringing the count back to 2\u20112.",
+      "regular": "Michael Soroka started the at-bat with two consecutive fastball strikes, forcing Trevor Story into a 0\u20112 hole. After a ball on the third fastball moved the count to 1\u20112, Soroka changed gears, throwing slurves that produced a foul, a ball, and another foul, ultimately tying the count at 2\u20112 by the sixth pitch of the sequence.",
+      "expert": "Michael Soroka, entering with a 4.70 ERA, began the top-2 at-bat versus .244-hitting Trevor Story with two four-seam fastballs, 91.9 and 93.1 mph, both called strikes for 0-2. A 93.6 mph fastball ball made it 1-2, after which Soroka's slurves, around 80 mph, produced a foul, a ball and another foul. Story has fought back from 0-2 to an even 2-2 count."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "complete": true,
+    "elapsed_seconds": 14.251,
+    "run_id": "52a7484ab36943fb",
+    "human_edits": {
+      "expert": {
+        "original_model_text": "Michael Soroka, entering with a 4.70 ERA, began the top\u20112 at\u2011bat versus .244\u2011hitting Trevor Story by delivering two four\u2011seam fastballs\u201491.9\u202fmph and 93.1\u202fmph\u2014both called strikes, creating a 0\u20112 count. A 93.6\u202fmph fastball ball raised it to 1\u20112, after which Soroka\u2019s 79\u2011mph slurves produced a foul, a ball, and another foul, leaving the count even at 2\u20112. Observations confirm the pitch types and results; strategic intent is not asserted."
+      }
+    },
+    "edited": true
+  },
+  "8": {
+    "commentary_by_level": {
+      "novice": "Michael Soroka began with two fastballs that the umpire called strikes, giving Trevor Story a 0\u20112 count. Soroka missed the third fastball, adding a ball for a 1\u20112 count. He then threw a slurve that fouled, a ball, two more fouls, and a changeup ball, leaving the count full at three balls and two strikes.",
+      "learning": "Soroka opened with two four\u2011seam fastballs, both called strikes, putting Story down 0\u20112. A third fastball was a ball, moving the count to 1\u20112. He then mixed in slurves\u2014one foul, a ball, then two more fouls\u2014before finishing with a changeup ball, leaving a full 3\u20112 count.",
+      "regular": "Michael Soroka started the at\u2011bat with consecutive four\u2011seam fastballs, both called strikes, quickly dropping Trevor Story to a 0\u20112 count. After a ball on the third fastball pushed the tally to 1\u20112, Soroka switched to slurves, generating a foul, a ball, and two additional fouls, then delivered a changeup ball to end the sequence with a full 3\u20112 count.",
+      "expert": "Michael Soroka, who entered with a 4.70 ERA, opened on Trevor Story ( .244 avg) with two four\u2011seam fastballs at 91.9\u202fmph and 93.1\u202fmph, both called strikes, creating a 0\u20112 count. A 93.6\u202fmph fastball ball moved it to 1\u20112. He then delivered slurves around 80\u202fmph\u2014foul, ball, two fouls\u2014followed by an 84.8\u202fmph changeup ball, leaving a full 3\u20112 count."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "complete": true,
+    "elapsed_seconds": 13.991,
+    "run_id": "408006f44c76ad28"
+  },
+  "9": {
+    "commentary_by_level": {
+      "novice": "Michael Soroka started with two fastballs that were strikes, giving Trevor Story a 0\u20112 count. He then threw a fastball that was a ball, making it 1\u20112. After that, a series of slurves and a changeup resulted in balls and fouls, ending with a 3\u20112 count.",
+      "learning": "Soroka opened the at\u2011bat with two four\u2011seam fastballs, both called strikes, so Story fell behind 0\u20112. A third fastball was a ball, moving the count to 1\u20112. He then mixed slurves and a changeup, generating more balls and fouls, and the count is now full at 3-2.",
+      "regular": "Soroka began with two straight four\u2011seam fastballs, both called strikes, pushing Trevor Story to an 0\u20112 count. A third fastball was a ball, nudging it to 1\u20112. He then switched to slurves for pitches four through seven, mixing balls and fouls, added a changeup ball on pitch eight, and closed with a slurve foul, leaving a full 3\u20112 count.",
+      "expert": "Michael Soroka, whose pre\u2011game ERA sits at 4.70, opened on Trevor Story (.244 average entering the game) with two four\u2011seam fastballs\u201491.9\u202fmph and 93.1\u202fmph\u2014both called strikes, creating a 0\u20112 count. A 93.6\u202fmph fastball followed as a ball (1\u20112). He then delivered slurves (\u224879\u201380\u202fmph) for pitches four to seven, generating a mix of balls and fouls, added an 84.8\u202fmph changeup ball on pitch eight, and finished with an 81.1\u202fmph slurve foul, ending at 3\u20112."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "complete": true,
+    "elapsed_seconds": 15.914,
+    "run_id": "c4276994f86db5e2",
+    "human_edits": {
+      "learning": {
+        "original_model_text": "Soroka opened the at\u2011bat with two four\u2011seam fastballs, both called strikes, so Story fell behind 0\u20112. A third fastball was a ball, moving the count to 1\u20112. He then mixed slurves and a changeup, generating more balls and fouls, finishing at 3\u20112 overall for the pitcher today."
+      },
+      "regular": {
+        "original_model_text": "Soroka began with two straight four\u2011seam fastballs, both called strikes, pushing Trevor Story to an 0\u20112 count. A third fastball was a ball, nudging it to 1\u20112. He then switched to slurves for pitches three through seven, mixing balls and fouls, added a changeup ball on pitch eight, and closed with a slurve foul, leaving a full 3\u20112 count."
+      },
+      "expert": {
+        "original_model_text": "Michael Soroka, whose pre\u2011game ERA sits at 4.70, opened on Trevor Story (career .244 average) with two four\u2011seam fastballs\u201491.9\u202fmph and 93.1\u202fmph\u2014both called strikes, creating a 0\u20112 count. A 93.6\u202fmph fastball followed as a ball (1\u20112). He then delivered slurves (\u224879\u201380\u202fmph) for pitches three to seven, generating a mix of balls and fouls, added an 84.8\u202fmph changeup ball on pitch eight, and finished with an 81.1\u202fmph slurve foul, ending at 3\u20112."
+      }
+    },
+    "edited": true
+  },
+  "10": {
+    "commentary_by_level": {
+      "novice": "Soroka began with two fastballs that were called strikes, giving Story a 0\u20112 count\u2014two strikes against him. He threw a ball, then a slower slurve that was a foul, followed by more slurves and a ball to reach a full 3\u20112 count. On the next fastball, Story hit a single.",
+      "learning": "Soroka opened with two four-seam fastballs, both called strikes, putting Story down 0-2. After a ball, Soroka mixed in slurves: a foul, a ball, then two more fouls. A changeup ball ran the count full at 3-2, Story fouled off one more slurve, and the final fastball resulted in a single.",
+      "regular": "Soroka started the at-bat with two called-strike four-seam fastballs, dropping Story into a 0-2 hole. A fastball ball opened the door for a slurve barrage: foul, ball, then two fouls. A changeup ball ran the count full at 3-2, Story fouled off one more slurve, then put Soroka's final fastball in play for a single.",
+      "expert": "Soroka opened with 91.9 and 93.1 mph four-seam fastballs, both called strikes, leaving Story at 0-2. After a 93.6 mph fastball ball, Soroka went to slurves around 80 mph: foul, ball, then two fouls. An 84.8 mph changeup ball ran the count full, Story fouled off an 81.1 mph slurve, then put a 94.0 mph fastball, his hardest pitch of the at-bat, in play for a single."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "complete": true,
+    "elapsed_seconds": 13.562,
+    "run_id": "829d10e7b8d749e7",
+    "human_edits": {
+      "learning": {
+        "original_model_text": "Soroka opened with two four\u2011seam fastballs, both called strikes, putting Story down 0\u20112. After a ball, Soroka mixed in slurves\u2014one foul, then a ball, and three more foul slurves\u2014pushing the count to 3\u20112. A changeup ball followed, and the final fastball resulted in a single."
+      },
+      "regular": {
+        "original_model_text": "Soroka started the at\u2011bat with two strike\u2011calling four\u2011seam fastballs, dropping Story into a 0\u20112 hole. A high\u2011velocity fastball ball opened the door for a slurve barrage\u2014foul, ball, then three consecutive foul slurves\u2014bringing the count to 3\u20112. After a changeup ball, Soroka\u2019s final fastball was put into play for a single."
+      },
+      "expert": {
+        "original_model_text": "Michael Soroka delivered a sequence beginning with two four\u2011seam fastballs at 91.9\u202fmph and 93.1\u202fmph, both called strikes, leaving Trevor Story at a 0\u20112 count. After a 93.6\u202fmph fastball ball, Soroka deployed slurves around 80\u202fmph\u2014foul, ball, then three consecutive fouls\u2014pushing the count to 3\u20112, followed by an 84.8\u202fmph changeup ball. A 94.0\u202fmph fastball was then put into play for a single. Story enters with a .244 average; Soroka\u2019s ERA sits at 4.70."
+      }
+    },
+    "edited": true
+  },
+  "5": {
+    "commentary_by_level": {
+      "novice": "Michael Soroka started with a fastball strike, giving Trevor Story a 0\u20111 count. A second fastball was another strike, making it 0\u20112. The third fastball was a ball, moving the count to 1\u20112. Soroka then threw a slurve that fouled, keeping 1\u20112, and a second slurve that was a ball, tying the count at 2\u20112.",
+      "learning": "Soroka opened with two four\u2011seam fastballs, both strikes, pushing Trevor Story to a 0\u20112 count. A third fastball was a ball, making it 1\u20112. He then delivered a slurve that fouled\u2014no change in count\u2014followed by another slurve that was a ball, leveling the count at 2\u20112.",
+      "regular": "Michael Soroka began the at\u2011bat with three straight fastballs: two called strikes, taking Trevor Story to a 0\u20112 count, then a ball that shifted the count to 1\u20112. He switched to a slurve, which fouled\u2014leaving the count unchanged\u2014before tossing another slurve that was a ball, tying the count at 2\u20112.",
+      "expert": "Michael Soroka, whose entering ERA is 4.70, opened with a 91.9\u202fmph four\u2011seam fastball called strike, then a 93.1\u202fmph fastball also a strike, moving Trevor Story (entering .244 average) to a 0\u20112 count. A 93.6\u202fmph fastball was a ball, making it 1\u20112. Soroka\u2019s 79.3\u202fmph slurve fouled, leaving the count unchanged, and an 80.7\u202fmph slurve was a ball, tying the count at 2\u20112."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "complete": true,
+    "elapsed_seconds": 14.863,
+    "run_id": "bab5474a53a32b45"
+  },
+  "7": {
+    "commentary_by_level": {
+      "novice": "Michael Soroka opened with two fastballs called strikes, putting Trevor Story at 0-2, one strike away from a strikeout. Soroka then threw a fastball for a ball, making it 1-2, and switched to slurves that produced a foul, a ball and two more fouls. A foul with two strikes doesn't count as strike three, so it's 2-2.",
+      "learning": "Soroka started with two four\u2011seam fastballs, both called strikes, giving Story a 0\u20112 count. A high\u2011velocity fastball was then a ball, shifting to 1\u20112. He changed to slurves, which yielded a foul, a ball, and two additional fouls, overall leaving the count tied at 2\u20112.",
+      "regular": "Michael Soroka opened the at-bat with two four-seam fastballs, each called a strike, pushing Trevor Story into a 0-2 hole. A third fastball was called a ball, making it 1-2. Switching to slurves, Soroka got a foul, then a ball, followed by two more fouls, and Story has battled back to a 2-2 count.",
+      "expert": "Michael Soroka, whose pre-game ERA sits at 4.70, began with two four-seam fastballs (91.9 and 93.1 mph), both called strikes, leaving Trevor Story at 0-2. A 93.6 mph fastball was a ball, moving to 1-2. Soroka then went to slurves around 80 mph: a foul, a ball, and two more fouls, with the count at 2-2. Story, entering at .244, has now fouled off three two-strike slurves."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "complete": true,
+    "elapsed_seconds": 15.669,
+    "run_id": "eb291762dbdc6a80",
+    "human_edits": {
+      "novice": {
+        "original_model_text": "Michael Soroka opened with two fastballs that the umpire called strikes, putting Trevor Story at a 0\u20112 count\u2014two strikes away from a strikeout. Soroka then threw a fastball ball, moving to 1\u20112, and switched to slurves that produced a foul, a ball and two more fouls, ending at a 2\u20112 count."
+      },
+      "regular": {
+        "original_model_text": "Michael Soroka opened the at\u2011bat with two four\u2011seam fastballs, each called a strike, pushing Trevor Story into a 0\u20112 deficit. A high fastball was judged a ball, raising the count to 1\u20112. Switching to slurves, Soroka induced a foul, then a ball, followed by two more fouls, concluding the revealed sequence at a balanced 2\u20112 count."
+      },
+      "expert": {
+        "original_model_text": "Michael Soroka, whose pre\u2011game ERA sits at 4.70, began with two four\u2011seam fastballs (91.9\u202fmph and 93.1\u202fmph) both called strikes, leaving Trevor Story at a 0\u20112 count. A 93.6\u202fmph fastball was a ball, moving to 1\u20112. Soroka then deployed slurves (\u224879\u202fmph), generating a foul, a ball, and two additional fouls, ending the disclosed portion at a 2\u20112 count. Story\u2019s entering\u2011game average is .244."
+      }
+    },
+    "edited": true
+  }
+}

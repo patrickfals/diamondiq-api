@@ -1,0 +1,882 @@
+{
+  "3": {
+    "position": 3,
+    "run_id": "fb90dd725b599e0b",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:35:51.349492+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "fb90dd725b599e0b",
+        "position": 3,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:35:51.349508+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "fb90dd725b599e0b"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:36:00.753565+00:00",
+        "elapsed_seconds": 9.4041,
+        "run_id": "fb90dd725b599e0b",
+        "meta": {
+          "id": "c2951baa-22a4-4f94-8b44-c9f97ed921fc",
+          "created": 1795196160,
+          "usage": {
+            "prompt_tokens": 11154,
+            "completion_tokens": 889,
+            "total_tokens": 12043
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:36:00.964738+00:00",
+        "elapsed_seconds": 9.6153,
+        "run_id": "fb90dd725b599e0b",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:35:57.614650+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:35:57.614650+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 3,
+          "run_id": "fb90dd725b599e0b",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:36:00.964754+00:00",
+        "elapsed_seconds": 9.6153,
+        "run_id": "fb90dd725b599e0b"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:36:07.637310+00:00",
+        "elapsed_seconds": 16.2878,
+        "run_id": "fb90dd725b599e0b",
+        "meta": {
+          "id": "31dcc7d0-3aff-4152-8be0-3256646e5d23",
+          "created": 1795196167,
+          "usage": {
+            "prompt_tokens": 3784,
+            "completion_tokens": 1506,
+            "total_tokens": 5290
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:36:07.637328+00:00",
+        "elapsed_seconds": 16.2878,
+        "run_id": "fb90dd725b599e0b",
+        "elapsed_total_seconds": 16.288
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  },
+  "1": {
+    "position": 1,
+    "run_id": "c2474dc42a112760",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:40:33.179041+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "c2474dc42a112760",
+        "position": 1,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:40:33.179054+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "c2474dc42a112760"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:40:42.270130+00:00",
+        "elapsed_seconds": 9.0911,
+        "run_id": "c2474dc42a112760",
+        "meta": {
+          "id": "601cef91-4b10-421c-9a8e-d9a16e1b46ae",
+          "created": 1795196442,
+          "usage": {
+            "prompt_tokens": 14681,
+            "completion_tokens": 1035,
+            "total_tokens": 15716
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:40:42.496374+00:00",
+        "elapsed_seconds": 9.3173,
+        "run_id": "c2474dc42a112760",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:40:38.641410+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:40:38.641410+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 1,
+          "run_id": "c2474dc42a112760",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:40:42.496389+00:00",
+        "elapsed_seconds": 9.3174,
+        "run_id": "c2474dc42a112760"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:40:49.916687+00:00",
+        "elapsed_seconds": 16.7377,
+        "run_id": "c2474dc42a112760",
+        "meta": {
+          "id": "d31599fe-3f42-4a8f-8efc-70e207548c77",
+          "created": 1795196449,
+          "usage": {
+            "prompt_tokens": 8822,
+            "completion_tokens": 1707,
+            "total_tokens": 10529
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:40:49.916706+00:00",
+        "elapsed_seconds": 16.7377,
+        "run_id": "c2474dc42a112760",
+        "elapsed_total_seconds": 16.738
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  },
+  "2": {
+    "position": 2,
+    "run_id": "bc1770a9c0bb2887",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:40:49.923808+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "bc1770a9c0bb2887",
+        "position": 2,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:40:49.923818+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "bc1770a9c0bb2887"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:40:57.288643+00:00",
+        "elapsed_seconds": 7.3649,
+        "run_id": "bc1770a9c0bb2887",
+        "meta": {
+          "id": "4d984134-947b-4ccb-bfa4-9b8ac5ec9328",
+          "created": 1795196457,
+          "usage": {
+            "prompt_tokens": 11047,
+            "completion_tokens": 849,
+            "total_tokens": 11896
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:40:57.548239+00:00",
+        "elapsed_seconds": 7.6244,
+        "run_id": "bc1770a9c0bb2887",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:40:55.316643+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:40:55.316643+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 2,
+          "run_id": "bc1770a9c0bb2887",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:40:57.548256+00:00",
+        "elapsed_seconds": 7.6245,
+        "run_id": "bc1770a9c0bb2887"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:41:04.383028+00:00",
+        "elapsed_seconds": 14.4592,
+        "run_id": "bc1770a9c0bb2887",
+        "meta": {
+          "id": "ad6d170b-6fde-4e8e-ad98-01dd64829a79",
+          "created": 1795196464,
+          "usage": {
+            "prompt_tokens": 8921,
+            "completion_tokens": 1745,
+            "total_tokens": 10666
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:41:04.383045+00:00",
+        "elapsed_seconds": 14.4592,
+        "run_id": "bc1770a9c0bb2887",
+        "elapsed_total_seconds": 14.459
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  },
+  "4": {
+    "position": 4,
+    "run_id": "b01517da0058e0e7",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:41:04.385130+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "b01517da0058e0e7",
+        "position": 4,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:41:04.385139+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "b01517da0058e0e7"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:41:11.777178+00:00",
+        "elapsed_seconds": 7.3921,
+        "run_id": "b01517da0058e0e7",
+        "meta": {
+          "id": "d797d3ac-2c6e-436f-bc6c-96d11507c19f",
+          "created": 1795196471,
+          "usage": {
+            "prompt_tokens": 11546,
+            "completion_tokens": 1068,
+            "total_tokens": 12614
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:41:12.146380+00:00",
+        "elapsed_seconds": 7.7613,
+        "run_id": "b01517da0058e0e7",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:41:08.919959+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:41:08.919959+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 4,
+          "run_id": "b01517da0058e0e7",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:41:12.146395+00:00",
+        "elapsed_seconds": 7.7613,
+        "run_id": "b01517da0058e0e7"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:41:17.736905+00:00",
+        "elapsed_seconds": 13.3518,
+        "run_id": "b01517da0058e0e7",
+        "meta": {
+          "id": "e158e1c2-eba5-43ee-a0a3-25a207230f24",
+          "created": 1795196477,
+          "usage": {
+            "prompt_tokens": 3813,
+            "completion_tokens": 1307,
+            "total_tokens": 5120
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:41:17.736920+00:00",
+        "elapsed_seconds": 13.3518,
+        "run_id": "b01517da0058e0e7",
+        "elapsed_total_seconds": 13.352
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  },
+  "5": {
+    "position": 5,
+    "run_id": "bab5474a53a32b45",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:44:28.413457+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "bab5474a53a32b45",
+        "position": 5,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:44:28.413474+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "bab5474a53a32b45"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:44:36.100376+00:00",
+        "elapsed_seconds": 7.6869,
+        "run_id": "bab5474a53a32b45",
+        "meta": {
+          "id": "3e9f1909-57e1-4e72-bad4-db833b40cdb5",
+          "created": 1795196676,
+          "usage": {
+            "prompt_tokens": 11540,
+            "completion_tokens": 1032,
+            "total_tokens": 12572
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:44:36.278882+00:00",
+        "elapsed_seconds": 7.8654,
+        "run_id": "bab5474a53a32b45",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:44:33.412592+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:44:33.412592+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 5,
+          "run_id": "bab5474a53a32b45",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:44:36.278896+00:00",
+        "elapsed_seconds": 7.8654,
+        "run_id": "bab5474a53a32b45"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:44:43.276366+00:00",
+        "elapsed_seconds": 14.8629,
+        "run_id": "bab5474a53a32b45",
+        "meta": {
+          "id": "bf24056b-d9d9-49f0-ba3e-b47780de232a",
+          "created": 1795196683,
+          "usage": {
+            "prompt_tokens": 3842,
+            "completion_tokens": 2083,
+            "total_tokens": 5925
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:44:43.276382+00:00",
+        "elapsed_seconds": 14.8629,
+        "run_id": "bab5474a53a32b45",
+        "elapsed_total_seconds": 14.863
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  },
+  "6": {
+    "position": 6,
+    "run_id": "52a7484ab36943fb",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:41:30.043572+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "52a7484ab36943fb",
+        "position": 6,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:41:30.043583+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "52a7484ab36943fb"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:41:38.501737+00:00",
+        "elapsed_seconds": 8.4582,
+        "run_id": "52a7484ab36943fb",
+        "meta": {
+          "id": "7e49dec4-d2a2-4f10-b592-d6d24f0733c4",
+          "created": 1795196498,
+          "usage": {
+            "prompt_tokens": 11692,
+            "completion_tokens": 1049,
+            "total_tokens": 12741
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:41:38.654712+00:00",
+        "elapsed_seconds": 8.6112,
+        "run_id": "52a7484ab36943fb",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:41:35.332618+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:41:35.332618+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 6,
+          "run_id": "52a7484ab36943fb",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:41:38.654729+00:00",
+        "elapsed_seconds": 8.6112,
+        "run_id": "52a7484ab36943fb"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:41:44.294953+00:00",
+        "elapsed_seconds": 14.2514,
+        "run_id": "52a7484ab36943fb",
+        "meta": {
+          "id": "2f20ce08-fa61-4c8f-bbf9-ad72ac644a75",
+          "created": 1795196504,
+          "usage": {
+            "prompt_tokens": 3862,
+            "completion_tokens": 1493,
+            "total_tokens": 5355
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:41:44.294968+00:00",
+        "elapsed_seconds": 14.2514,
+        "run_id": "52a7484ab36943fb",
+        "elapsed_total_seconds": 14.251
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  },
+  "7": {
+    "position": 7,
+    "run_id": "eb291762dbdc6a80",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:44:43.681160+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "eb291762dbdc6a80",
+        "position": 7,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:44:43.681177+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "eb291762dbdc6a80"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:44:51.201270+00:00",
+        "elapsed_seconds": 7.5201,
+        "run_id": "eb291762dbdc6a80",
+        "meta": {
+          "id": "6c70830a-a3d8-40e7-95ba-11c5c7ee93d8",
+          "created": 1795196691,
+          "usage": {
+            "prompt_tokens": 11751,
+            "completion_tokens": 1072,
+            "total_tokens": 12823
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:44:51.394596+00:00",
+        "elapsed_seconds": 7.7135,
+        "run_id": "eb291762dbdc6a80",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:44:48.521460+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:44:48.521460+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 7,
+          "run_id": "eb291762dbdc6a80",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:44:51.394611+00:00",
+        "elapsed_seconds": 7.7135,
+        "run_id": "eb291762dbdc6a80"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:44:59.349943+00:00",
+        "elapsed_seconds": 15.6688,
+        "run_id": "eb291762dbdc6a80",
+        "meta": {
+          "id": "d5184de7-3ddb-490b-918a-f27f67a5e703",
+          "created": 1795196699,
+          "usage": {
+            "prompt_tokens": 9610,
+            "completion_tokens": 2184,
+            "total_tokens": 11794
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:44:59.349960+00:00",
+        "elapsed_seconds": 15.6688,
+        "run_id": "eb291762dbdc6a80",
+        "elapsed_total_seconds": 15.669
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  },
+  "8": {
+    "position": 8,
+    "run_id": "408006f44c76ad28",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:41:58.260273+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "408006f44c76ad28",
+        "position": 8,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:41:58.260281+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "408006f44c76ad28"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:42:05.051354+00:00",
+        "elapsed_seconds": 6.7911,
+        "run_id": "408006f44c76ad28",
+        "meta": {
+          "id": "d142a494-0ec9-4a52-a83f-90f9b5981c73",
+          "created": 1795196525,
+          "usage": {
+            "prompt_tokens": 10230,
+            "completion_tokens": 883,
+            "total_tokens": 11113
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:42:05.275408+00:00",
+        "elapsed_seconds": 7.0151,
+        "run_id": "408006f44c76ad28",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:42:02.516899+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:42:02.516899+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 8,
+          "run_id": "408006f44c76ad28",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:42:05.275423+00:00",
+        "elapsed_seconds": 7.0152,
+        "run_id": "408006f44c76ad28"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:42:12.251623+00:00",
+        "elapsed_seconds": 13.9914,
+        "run_id": "408006f44c76ad28",
+        "meta": {
+          "id": "632b6e9b-8bbb-437e-949e-11854aa9f9a4",
+          "created": 1795196532,
+          "usage": {
+            "prompt_tokens": 3932,
+            "completion_tokens": 1977,
+            "total_tokens": 5909
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:42:12.251638+00:00",
+        "elapsed_seconds": 13.9914,
+        "run_id": "408006f44c76ad28",
+        "elapsed_total_seconds": 13.991
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  },
+  "9": {
+    "position": 9,
+    "run_id": "c4276994f86db5e2",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:42:12.254308+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "c4276994f86db5e2",
+        "position": 9,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:42:12.254320+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "c4276994f86db5e2"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:42:19.757725+00:00",
+        "elapsed_seconds": 7.5034,
+        "run_id": "c4276994f86db5e2",
+        "meta": {
+          "id": "10128a1e-51a2-4f2b-af41-1c99825c96b1",
+          "created": 1795196539,
+          "usage": {
+            "prompt_tokens": 11753,
+            "completion_tokens": 948,
+            "total_tokens": 12701
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:42:19.913288+00:00",
+        "elapsed_seconds": 7.659,
+        "run_id": "c4276994f86db5e2",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:42:17.326767+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:42:17.326767+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 9,
+          "run_id": "c4276994f86db5e2",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:42:19.913306+00:00",
+        "elapsed_seconds": 7.659,
+        "run_id": "c4276994f86db5e2"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:42:28.168573+00:00",
+        "elapsed_seconds": 15.9143,
+        "run_id": "c4276994f86db5e2",
+        "meta": {
+          "id": "51833ca1-6b8b-406e-8aad-acd6dbaa63df",
+          "created": 1795196548,
+          "usage": {
+            "prompt_tokens": 9532,
+            "completion_tokens": 2063,
+            "total_tokens": 11595
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:42:28.168589+00:00",
+        "elapsed_seconds": 15.9143,
+        "run_id": "c4276994f86db5e2",
+        "elapsed_total_seconds": 15.914
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  },
+  "10": {
+    "position": 10,
+    "run_id": "829d10e7b8d749e7",
+    "events": [
+      {
+        "event": "run_started",
+        "ts_utc": "2026-11-20T17:42:28.175204+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "829d10e7b8d749e7",
+        "position": 10,
+        "game_id": 777245,
+        "at_bat_index": 8
+      },
+      {
+        "event": "stage_a_call_started",
+        "ts_utc": "2026-11-20T17:42:28.175231+00:00",
+        "elapsed_seconds": 0.0,
+        "run_id": "829d10e7b8d749e7"
+      },
+      {
+        "event": "stage_a_call_returned",
+        "ts_utc": "2026-11-20T17:42:35.889152+00:00",
+        "elapsed_seconds": 7.714,
+        "run_id": "829d10e7b8d749e7",
+        "meta": {
+          "id": "8fd10b86-4a9d-43c4-967f-71c64bf08719",
+          "created": 1795196555,
+          "usage": {
+            "prompt_tokens": 12069,
+            "completion_tokens": 1112,
+            "total_tokens": 13181
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "snapshot_redeemed",
+        "ts_utc": "2026-11-20T17:42:36.115622+00:00",
+        "elapsed_seconds": 7.9404,
+        "run_id": "829d10e7b8d749e7",
+        "evidence_source": "render_redemption_log",
+        "server_ts_utc": "2026-11-20T17:42:32.924983+00:00",
+        "note": "server-reported timestamp, not directly observed",
+        "record": {
+          "ts_utc": "2026-11-20T17:42:32.924983+00:00",
+          "game_id": 777245,
+          "at_bat_index": 8,
+          "revealed_count": 10,
+          "run_id": "829d10e7b8d749e7",
+          "user_agent": "Watson Orchestrate",
+          "status": "ok"
+        }
+      },
+      {
+        "event": "stage_b_call_started",
+        "ts_utc": "2026-11-20T17:42:36.115638+00:00",
+        "elapsed_seconds": 7.9404,
+        "run_id": "829d10e7b8d749e7"
+      },
+      {
+        "event": "stage_b_call_returned",
+        "ts_utc": "2026-11-20T17:42:41.736787+00:00",
+        "elapsed_seconds": 13.5616,
+        "run_id": "829d10e7b8d749e7",
+        "meta": {
+          "id": "f814c8e1-35cb-456a-8ee3-a24871dd610c",
+          "created": 1795196561,
+          "usage": {
+            "prompt_tokens": 3978,
+            "completion_tokens": 1507,
+            "total_tokens": 5485
+          },
+          "finish_reason": "stop"
+        }
+      },
+      {
+        "event": "run_completed",
+        "ts_utc": "2026-11-20T17:42:41.736803+00:00",
+        "elapsed_seconds": 13.5616,
+        "run_id": "829d10e7b8d749e7",
+        "elapsed_total_seconds": 13.562
+      }
+    ],
+    "trace_complete": false,
+    "capture_notes": [
+      "IBM-internal agent delegation, snapshot-token creation, Pitch Scout tool execution, and individual HTTP request/response timings cannot be directly observed from the precompute script. These are not recorded."
+    ]
+  }
+}
