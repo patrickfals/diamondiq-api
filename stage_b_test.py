@@ -84,9 +84,12 @@ def local_fail(label: str, detail: str) -> None:
 
 
 # 1. Prompt formatting succeeds
+# The template now requires both {stage_a_analysis} and {fact_sheet}.
+_PLACEHOLDER_FACT_SHEET = "(No fact sheet provided)"
 try:
     formatted = _FAN_EXPERIENCE_PROMPT_TEMPLATE.format(
-        stage_a_analysis=STAGE_A_FIXTURE
+        stage_a_analysis=STAGE_A_FIXTURE,
+        fact_sheet=_PLACEHOLDER_FACT_SHEET,
     )
     if "{stage_a_analysis}" in formatted:
         local_fail("prompt_format", "placeholder not substituted")
@@ -166,6 +169,7 @@ print("-" * 60)
 stage_a_input = {
     "analysis": STAGE_A_FIXTURE,
     "evidence_pitches": EVIDENCE_PITCHES,
+    "revealed_count": 3,
 }
 
 start = time.monotonic()

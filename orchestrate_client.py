@@ -62,15 +62,165 @@ def analyze_at_bat(game_id: int, at_bat_index: int, knowledge_level: str) -> str
 
 
 # ---------------------------------------------------------------------------
+# build_fact_sheet() — spoiler-safe, human-readable fact sheet for Stage B
+# ---------------------------------------------------------------------------
+
+def build_fact_sheet(
+    game_data: dict,
+    game_id: int,
+    at_bat_index: int,
+    revealed_count: int,
+) -> str:
+    """
+    Build a spoiler-safe plain-text fact sheet for the given snapshot position.
+
+    Uses mlb_data.build_authorized_snapshot() as the single authoritative
+    spoiler gate — no spoiler-filtering logic is duplicated here.
+
+    Parameters
+    ----------
+    game_data      : full MLB Stats API response from mlb_data.fetch_game_data()
+    game_id        : MLB game identifier
+    at_bat_index   : zero-based at-bat index
+    revealed_count : number of pitches to authorize (>= 0; 0 = pregame)
+
+    Returns
+    -------
+    A multi-line plain-text string.  Contains only spoiler-safe information:
+    batter/pitcher identities, inning context, entering-game stats (when
+    available), and details for authorized pitches only.  The final outcome
+    is included only when is_complete is True.
+
+    Format note: "Pitches revealed so far: N" — never "of M".
+
+    Raises
+    ------
+    mlb_data.DataError : propagated from build_authorized_snapshot() on
+                         invalid inputs or missing at-bat.
+    """
+    from mlb_data import build_authorized_snapshot
+
+    snap = build_authorized_snapshot(
+        game_data,
+        game_id=game_id,
+        at_bat_index=at_bat_index,
+        revealed_count=revealed_count,
+    )
+
+    lines = []
+
+    # --- Header ---
+    lines.append("=== DiamondIQ Verified Fact Sheet ===")
+    lines.append(f"Game ID       : {snap['game_id']}")
+    lines.append(f"At-bat index  : {snap['at_bat_index']}")
+    half = snap.get("half_inning") or ""
+    inning = snap.get("inning")
+    if inning is not None:
+        lines.append(f"Inning        : {half} {inning}".strip())
+    lines.append(f"Batter        : {snap.get('batter') or 'Unknown'}")
+    lines.append(f"Pitcher       : {snap.get('pitcher') or 'Unknown'}")
+
+    # --- Entering-game stats (only when available for verified at-bats) ---
+    batter_stats = snap.get("batter_stats")
+    if batter_stats:
+        lines.append(
+            f"Batter entering-game AVG  : {batter_stats['avg']:.3f}"
+            f" ({batter_stats['hits']} H / {batter_stats['at_bats']} AB)"
+        )
+    pitcher_stats = snap.get("pitcher_stats")
+    if pitcher_stats:
+        lines.append(
+            f"Pitcher entering-game ERA : {pitcher_stats['era']:.2f}"
+            f" ({pitcher_stats['earned_runs']} ER in"
+            f" {pitcher_stats['outs_recorded']} outs)"
+        )
+
+    # --- Pitch summary header (exact required format) ---
+    lines.append(f"Pitches revealed so far: {revealed_count}")
+
+    # --- Per-pitch details for the authorized window ---
+    pitches = snap.get("pitches", [])
+    if pitches:
+        lines.append("")
+        lines.append("Pitch details (authorized window):")
+        for pitch in pitches:
+            num = pitch.get("number", "?")
+            ptype = pitch.get("type") or "Unknown type"
+            result = pitch.get("result") or "Unknown result"
+            vel = pitch.get("velocity_mph")
+            count_after = pitch.get("count_after_pitch") or {}
+
+            vel_str = f", {vel:.1f} mph" if vel is not None else ""
+            balls = count_after.get("balls", "?")
+            strikes = count_after.get("strikes", "?")
+            count_str = f" | count after: {balls}-{strikes}"
+
+            lines.append(
+                f"  Pitch {num}: {ptype} — {result}{vel_str}{count_str}"
+            )
+    else:
+        lines.append("  (No pitches in authorized window)")
+
+    # --- Final outcome: only when at-bat is complete ---
+    if snap.get("is_complete"):
+        outcome = snap.get("outcome") or "Unknown"
+        lines.append("")
+        lines.append(f"At-bat outcome: {outcome}")
+
+    lines.append("=== End of Fact Sheet ===")
+
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
 # Stage A: Analyst invocation (snapshot-scoped, spoiler-safe)
 # ---------------------------------------------------------------------------
 
 # Regex that flags explicit forward references to pitch numbers not yet
-# revealed (e.g. "pitch 4", "pitch 5", "pitches 4-6", "pitch #7").
-# Checked after extraction; always validated against revealed_count.
+# revealed.  Recognizes:
+#   - single numbers  : "pitch 4",  "pitch #7"
+#   - hyphenated range: "pitches 2-6"  (group 1 = lower, group 2 = upper)
+#   - en-dash range   : "pitches 2–6"  (same)
+#
+# Groups:
+#   group(1) : always present — the first (or only) pitch number
+#   group(2) : present for ranges — the upper endpoint
 _FUTURE_PITCH_RE = _re.compile(
-    r"\bpitch(?:es)?\s*#?\s*(\d+)",
+    r"\bpitch(?:es)?\s*#?\s*(\d+)"
+    r"(?:\s*[-\u2013]\s*(\d+))?",
     _re.IGNORECASE,
+)
+
+
+def _check_future_pitch_refs(text: str, revealed_count: int) -> list:
+    """
+    Scan *text* for explicit references to pitch numbers beyond revealed_count.
+
+    Recognizes single numbers ("pitch 4"), hash notation ("pitch #7"),
+    hyphenated ranges ("pitches 2-6"), and en-dash ranges ("pitches 2–6").
+    For ranges the upper endpoint is also checked.
+
+    Returns a sorted list of future pitch numbers found (values >
+    revealed_count only).  Returns [] when no future references exist.
+    """
+    future = []
+    for m in _FUTURE_PITCH_RE.finditer(text):
+        n1 = int(m.group(1))
+        if n1 > revealed_count:
+            future.append(n1)
+        if m.group(2) is not None:
+            n2 = int(m.group(2))
+            if n2 > revealed_count:
+                future.append(n2)
+    return future
+
+
+# Forbidden count-reset phrases for Stage B validation.
+_COUNT_RESET_PHRASES = (
+    "fresh chance",
+    "reset the count",
+    "back in the count",
+    "leveled the count",
 )
 
 # Double-brace {{ }} produces literal { } after .format() substitution.
@@ -130,6 +280,7 @@ def generate_stage_a(
     game_id: int,
     at_bat_index: int,
     revealed_count: int,
+    run_id=None,
 ) -> dict:
     """
     Invoke DiamondIQ Analyst for the given snapshot position and return a
@@ -140,13 +291,18 @@ def generate_stage_a(
     game_id        : MLB game identifier (must be > 0)
     at_bat_index   : zero-based at-bat index (must be >= 0)
     revealed_count : number of pitches to authorize (must be >= 1)
+    run_id         : optional non-secret run correlation ID; forwarded to
+                     create_snapshot_token().  Must be exactly 16 lowercase
+                     hex characters when provided (secrets.token_hex(8)).
 
     Returns
     -------
     dict with keys:
-        - "analysis"         (str)       : verified analysis text
-        - "evidence_pitches" (list[int]) : pitch numbers from the authorized
-                                           snapshot; range 1-revealed_count.
+        - "analysis"          (str)       : verified analysis text
+        - "evidence_pitches"  (list[int]) : pitch numbers from the authorized
+                                            snapshot; range 1-revealed_count.
+        - "response_metadata" (dict)      : safe IBM response metadata
+                                            (key present only when available).
 
     Raises
     ------
@@ -162,8 +318,9 @@ def generate_stage_a(
     if revealed_count < 1:
         raise ValueError(f"revealed_count must be >= 1, got {revealed_count}")
 
-    # --- Create signed snapshot token (raises ValueError if secret missing) ---
-    token = create_snapshot_token(game_id, at_bat_index, revealed_count)
+    # --- Create signed snapshot token; run_id forwarded when provided ---
+    token = create_snapshot_token(game_id, at_bat_index, revealed_count,
+                                  run_id=run_id)
 
     api_key = os.environ["WO_API_KEY"]
     instance_url = os.environ["WO_INSTANCE_URL"].rstrip("/")
@@ -239,9 +396,6 @@ def generate_stage_a(
         )
 
     # --- Reject analysis text that reports a tool/token failure ---
-    # The Analyst sometimes returns a valid-JSON response whose "analysis"
-    # field describes a snapshot-token error or unavailable pitch data
-    # rather than actual pitch analysis.  Catch the most common patterns.
     _FAILURE_PATTERNS = (
         "invalid snapshot token",
         "snapshot token is invalid",
@@ -305,12 +459,7 @@ def generate_stage_a(
         )
 
     # --- Spoiler check: explicit future-pitch references in analysis text ---
-    # Scan for "pitch N" / "pitches N" patterns; reject any N > revealed_count.
-    spoiler_refs = [
-        int(m.group(1))
-        for m in _FUTURE_PITCH_RE.finditer(analysis)
-        if int(m.group(1)) > revealed_count
-    ]
+    spoiler_refs = _check_future_pitch_refs(analysis, revealed_count)
     if spoiler_refs:
         raise StageAError(
             f"Analyst analysis references future pitch number(s) "
@@ -318,10 +467,90 @@ def generate_stage_a(
             raw_response=raw_content,
         )
 
-    return {
+    output = {
         "analysis": analysis.strip(),
         "evidence_pitches": evidence_pitches,
     }
+
+    # --- Extract safe IBM response metadata (present only when available) ---
+    meta = _extract_response_metadata(result)
+    if meta:
+        output["response_metadata"] = meta
+
+    return output
+
+
+# ---------------------------------------------------------------------------
+# Safe IBM response metadata extraction
+# ---------------------------------------------------------------------------
+
+def _extract_response_metadata(result: dict) -> dict:
+    """
+    Extract an allowlisted set of safe IBM response metadata fields.
+
+    Retained fields (only when present and the correct type):
+        id           : response identifier string
+        created      : creation timestamp integer
+        usage        : dict of numeric token counts only
+        finish_reason: reason the response stopped (from choices[0])
+        tool_calls   : safe structural summary — only id, type, function_name.
+                       Arguments, message content, and other payloads are
+                       excluded entirely.
+
+    Never returns, logs, or persists raw tool-call arguments, signed snapshot
+    tokens, credentials, authorization headers, or complete IBM responses.
+
+    Returns an empty dict when no recognized metadata is available.
+    """
+    meta: dict = {}
+
+    if "id" in result and isinstance(result["id"], str):
+        meta["id"] = result["id"]
+
+    if "created" in result and isinstance(result["created"], int):
+        meta["created"] = result["created"]
+
+    if "usage" in result and isinstance(result["usage"], dict):
+        # Retain only numeric token-count fields; skip strings/unknowns.
+        safe_usage = {
+            k: v for k, v in result["usage"].items()
+            if isinstance(v, (int, float))
+        }
+        if safe_usage:
+            meta["usage"] = safe_usage
+
+    choices = result.get("choices")
+    if isinstance(choices, list) and choices:
+        choice = choices[0]
+        if isinstance(choice, dict):
+            fr = choice.get("finish_reason")
+            if isinstance(fr, str):
+                meta["finish_reason"] = fr
+
+            message = choice.get("message") or {}
+            tool_calls = message.get("tool_calls")
+            if isinstance(tool_calls, list) and tool_calls:
+                safe_calls = []
+                for tc in tool_calls:
+                    if not isinstance(tc, dict):
+                        continue
+                    safe_tc: dict = {}
+                    if "id" in tc and isinstance(tc["id"], str):
+                        safe_tc["id"] = tc["id"]
+                    if "type" in tc and isinstance(tc["type"], str):
+                        safe_tc["type"] = tc["type"]
+                    # Only the function name is safe; arguments are excluded.
+                    func = tc.get("function") or {}
+                    if isinstance(func, dict):
+                        fname = func.get("name")
+                        if isinstance(fname, str):
+                            safe_tc["function_name"] = fname
+                    if safe_tc:
+                        safe_calls.append(safe_tc)
+                if safe_calls:
+                    meta["tool_calls"] = safe_calls
+
+    return meta
 
 
 # ---------------------------------------------------------------------------
@@ -331,11 +560,12 @@ def generate_stage_a(
 _FAN_EXPERIENCE_LEVELS = ("novice", "learning", "regular", "expert")
 
 # Double-brace {{ }} produces literal { } after .format() substitution.
-# {stage_a_analysis} is the only interpolation point.
+# {stage_a_analysis} and {fact_sheet} are the two interpolation points.
 _FAN_EXPERIENCE_PROMPT_TEMPLATE = """\
-You are DiamondIQ Fan Experience. A verified baseball analysis has been \
-provided below. Using ONLY the facts stated in that analysis, write four \
-short baseball broadcast commentaries \u2014 one per knowledge level.
+You are DiamondIQ Fan Experience. A verified baseball analysis and a \
+VERIFIED FACT SHEET have been provided below. Using ONLY the facts stated \
+in that analysis and fact sheet, write four short baseball broadcast \
+commentaries — one per knowledge level.
 Do not invent pitches, statistics, or events not present in the analysis.
 Do not reveal pitches or outcomes that are not explicitly stated in the \
 analysis. Only mention the final outcome if it is explicitly stated in the \
@@ -355,6 +585,9 @@ any other wording that suggests the batter's deficit was erased by a ball.
 ANALYSIS:
 {stage_a_analysis}
 
+VERIFIED FACT SHEET:
+{fact_sheet}
+
 Respond with valid JSON only \u2014 no prose before or after, no Markdown fences. \
 Use exactly this structure:
 
@@ -367,14 +600,21 @@ Use exactly this structure:
   }}
 }}
 
-Requirements per level (each approximately 35-60 words):
-- novice: plain language, no jargon, explain what happened simply
-- learning: basic terms (strike, ball, count), light colour commentary
-- regular: pitch sequence framing, momentum language a typical fan would enjoy
-- expert: velocity, pitch usage patterns, strategic intent a scout would notice \
-  (only when that detail is present in the analysis)
+Requirements per level:
+- novice   (40-55 words)  : Everyday language. Explain strike, ball, count, \
+and any pitch type mentioned. No jargon.
+- learning (45-60 words)  : Assume basic baseball knowledge. Briefly name \
+pitch types and explain how the count affects the at-bat.
+- regular  (50-65 words)  : Natural broadcast commentary emphasizing \
+sequencing, count progression, and observed developments.
+- expert   (55-70 words)  : Verified velocities, pitch types, entering AVG/ERA \
+when available, and distinctions between observation and inference. Only \
+include statistical detail that is present in the analysis or fact sheet.
 
-All four commentaries must be grounded exclusively in the provided analysis.
+All four commentaries must describe consistent underlying facts. Only the \
+complexity, terminology, and depth of explanation should change.
+All four commentaries must be grounded exclusively in the provided analysis \
+and fact sheet.
 """
 
 
@@ -403,30 +643,37 @@ def _strip_fences(text: str) -> str:
 def generate_fan_commentary(stage_a_input: dict) -> dict:
     """
     Call Fan Experience directly (no Analyst, no Pitch Scout) with verified
-    Stage A data and return parsed JSON containing commentary for all four
-    knowledge levels, plus the original evidence_pitches unchanged.
+    Stage A data and a VERIFIED FACT SHEET, then return parsed JSON containing
+    commentary for all four knowledge levels.
 
     Args:
         stage_a_input: dict with keys:
-            - "analysis" (str): verified Stage A analysis text
-            - "evidence_pitches" (list[int]): pitch numbers from the
-              verified snapshot; attached to the result unchanged.
+            - "analysis"       (str)       : verified Stage A analysis text
+            - "evidence_pitches" (list[int]): pitch numbers from the verified
+              snapshot; attached to the result unchanged.
+            - "fact_sheet"     (str, optional) : pre-built fact sheet from
+              build_fact_sheet().  When absent, an empty placeholder is used
+              so callers that do not yet supply a fact sheet remain compatible.
+            - "revealed_count" (int, required for spoiler validation) : number
+              of pitches authorized.  When absent, FanCommentaryError is raised
+              to prevent silent skipping of future-pitch validation.
 
     Returns:
         dict with keys:
             - "commentary_by_level": {"novice": str, "learning": str,
                                       "regular": str, "expert": str}
-            - "evidence_pitches": list[int] (passed through from input)
+            - "evidence_pitches"   : list[int] (passed through from input)
+            - "response_metadata"  : dict (present only when available)
 
     Raises:
-        TypeError: if stage_a_input is not a dict or required keys are
-                   the wrong type.
-        KeyError: if WO_API_KEY, WO_INSTANCE_URL, or
-                  WO_FAN_EXPERIENCE_AGENT_ID are not set.
-        FanCommentaryError: if the IBM response is missing, malformed,
-                            or incomplete. The raw_response attribute
-                            holds the unmodified agent string for
-                            debugging; never log or return it.
+        TypeError          : if stage_a_input is not a dict or required keys
+                             are the wrong type.
+        KeyError           : if WO_API_KEY, WO_INSTANCE_URL, or
+                             WO_FAN_EXPERIENCE_AGENT_ID are not set.
+        FanCommentaryError : if revealed_count is missing from stage_a_input;
+                             if the IBM response is missing, malformed, or
+                             incomplete; if any commentary level references a
+                             future pitch or uses a forbidden count-reset phrase.
     """
     # --- Validate input ---
     if not isinstance(stage_a_input, dict):
@@ -445,6 +692,25 @@ def generate_fan_commentary(stage_a_input: dict) -> dict:
         raise TypeError(
             "stage_a_input['evidence_pitches'] must be a list of ints"
         )
+
+    # --- revealed_count is required for spoiler validation ---
+    # Silently skipping validation when it is missing would be a safety gap.
+    r_count = stage_a_input.get("revealed_count")
+    if r_count is None:
+        raise FanCommentaryError(
+            "stage_a_input must include 'revealed_count' (int) so that "
+            "future-pitch spoiler validation can be performed on each "
+            "commentary level.  Add revealed_count to your stage_a_input."
+        )
+    if not isinstance(r_count, int) or r_count < 0:
+        raise FanCommentaryError(
+            f"stage_a_input['revealed_count'] must be a non-negative int, "
+            f"got: {r_count!r}"
+        )
+
+    # Fact sheet is optional for backward compat; callers that supply it
+    # enable the VERIFIED FACT SHEET section in the prompt.
+    fact_sheet = stage_a_input.get("fact_sheet") or "(No fact sheet provided)"
 
     api_key = os.environ["WO_API_KEY"]
     instance_url = os.environ["WO_INSTANCE_URL"].rstrip("/")
@@ -466,9 +732,10 @@ def generate_fan_commentary(stage_a_input: dict) -> dict:
     with urlopen(token_request, timeout=20) as response:
         access_token = json.load(response)["access_token"]
 
-    # Step 2: Call Fan Experience directly with the Stage A analysis
+    # Step 2: Call Fan Experience with the Stage A analysis + verified fact sheet
     prompt = _FAN_EXPERIENCE_PROMPT_TEMPLATE.format(
-        stage_a_analysis=analysis
+        stage_a_analysis=analysis,
+        fact_sheet=fact_sheet,
     )
 
     payload = json.dumps({
@@ -537,7 +804,33 @@ def generate_fan_commentary(stage_a_input: dict) -> dict:
             raw_response=raw_content,
         )
 
+    # --- Spoiler check: future-pitch references in all four levels ---
+    for lvl, text in commentary.items():
+        future = _check_future_pitch_refs(text, r_count)
+        if future:
+            raise FanCommentaryError(
+                f"Fan Experience '{lvl}' commentary references future "
+                f"pitch number(s) beyond revealed_count={r_count}: {future}",
+                raw_response=raw_content,
+            )
+
+    # --- Count-reset phrase check on all four commentary levels ---
+    for lvl, text in commentary.items():
+        text_lower = text.lower()
+        for phrase in _COUNT_RESET_PHRASES:
+            if phrase in text_lower:
+                raise FanCommentaryError(
+                    f"Fan Experience '{lvl}' commentary contains forbidden "
+                    f"count-reset phrase: {phrase!r}",
+                    raw_response=raw_content,
+                )
+
     # --- Attach evidence_pitches from verified input (never from IBM) ---
     parsed["evidence_pitches"] = evidence_pitches
+
+    # --- Extract safe IBM response metadata (present only when available) ---
+    meta = _extract_response_metadata(result)
+    if meta:
+        parsed["response_metadata"] = meta
 
     return parsed
