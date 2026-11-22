@@ -1,0 +1,176 @@
+{
+  "3": {
+    "commentary_by_level": {
+      "novice": "The pitcher threw two fastballs that the umpire called strikes, giving the batter two strikes. On the third fastball the umpire called a ball, so the count became one ball and two strikes. The batter now needs to avoid a third strike to stay alive.",
+      "learning": "Two consecutive four\u2011seam fastballs were strikes, moving the count to 0\u20112. The next fastball was a ball, advancing the count to 1\u20112. The batter now has one ball and two strikes, meaning another strike ends the at\u2011bat.",
+      "regular": "The pitcher delivered back\u2011to\u2011back four\u2011seam fastballs, both strikes, taking the count to 0\u20112. A third fastball missed the zone as a ball, shifting the count to 1\u20112 and keeping the batter under pressure with two strikes pending.",
+      "expert": "The sequence consisted of three straight four\u2011seam fastballs: two strikes followed by a ball, moving the count from 0\u20110 to 0\u20112 then to 1\u20112. The pitcher stayed with the fastball for all three offerings before missing the zone on the third."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3
+    ],
+    "complete": true,
+    "elapsed_seconds": 12.02,
+    "edited": true,
+    "edit_note": "Revised all four levels to clarify the 1-2 count outcome and confirm the third pitch was a ball (not a third strike); language tightened for consistency across levels."
+  },
+  "1": {
+    "commentary_by_level": {
+      "novice": "The pitcher threw the first ball and the umpire called it a strike, giving the batter one strike against him. He now has a 0\u20131 count and must avoid two more strikes to stay in the at\u2011bat.",
+      "learning": "The at\u2011bat opened with a first\u2011pitch called strike, putting the batter at a 0\u20131 count\u2014zero balls and one strike. With that strike on the board, the batter must watch the next pitches closely; two more strikes would end his turn.",
+      "regular": "The duel began with a first\u2011pitch strike, instantly putting the hitter down 0\u20131. That early strike sets the tone, forcing the batter to stay ahead of the count while the pitcher tries to build momentum.",
+      "expert": "The at\u2011bat started with a first\u2011pitch called strike, establishing a 0\u20131 count right away. That immediate strike puts pressure on the batter and signals the pitcher\u2019s early aggressive approach, a pattern to watch as the sequence unfolds."
+    },
+    "evidence_pitches": [
+      1
+    ],
+    "complete": true,
+    "elapsed_seconds": 11.98
+  },
+  "2": {
+    "commentary_by_level": {
+      "novice": "The pitcher threw two fast pitches, and the umpire ruled each one a strike. After those two pitches, the batter now has zero balls and two strikes, meaning just one more strike will end the at-bat if it comes next.",
+      "learning": "Two fastballs came in a row and were both called strikes, advancing the count to 0\u20112. That means the batter has no balls and two strikes\u2014one more strike and he'll be out unless he puts a ball in play or earns a ball.",
+      "regular": "The pitcher stuck with his fastball, delivering back\u2011to\u2011back strikes and pushing the count to 0\u20112. With two strikes already, the batter is under pressure, and the next pitch could swing the momentum dramatically either way.",
+      "expert": "The pitcher employed two consecutive fastballs, each recorded as a strike, moving the count to 0\u20112. This early fastball repetition underscores a straightforward approach, setting up a high\u2011leverage situation where the batter must respond to avoid a strikeout."
+    },
+    "evidence_pitches": [
+      1,
+      2
+    ],
+    "complete": true,
+    "elapsed_seconds": 11.36
+  },
+  "4": {
+    "commentary_by_level": {
+      "novice": "Soroka threw two fast pitches that the umpire called strikes, so the batter already had two strikes. He then threw a ball, giving the batter a chance, but the batter swung at a slower, curving pitch and only managed a foul, keeping the count unchanged.",
+      "learning": "Soroka started with two four\u2011seam fastballs, both called strikes, putting the batter down 0\u20112. He then delivered a ball, which added a ball to the count, and the batter fouled off a slower slurve, leaving the count still at 0\u20112.",
+      "regular": "Soroka opened the duel with back\u2011to\u2011back straight four\u2011seam fastballs, both called strikes to jump to a 0\u20112 count. He forced a ball, then the batter fouled off a slower slurve, preserving the two\u2011strike pressure and keeping the momentum in Soroka\u2019s favor.",
+      "expert": "Soroka\u2019s early sequence featured two consecutive straight four\u2011seam fastballs, each resulting in a strike call and an immediate 0\u20112 deficit for the hitter. He then introduced a slower slurve, which the batter fouled off, maintaining the strike count while showcasing a clear shift in pitch type."
+    },
+    "evidence_pitches": [
+      1,
+      2
+    ],
+    "complete": true,
+    "elapsed_seconds": 11.03
+  },
+  "5": {
+    "commentary_by_level": {
+      "novice": "The pitcher started with two fast pitches that the umpire called strikes. He then threw another fast pitch that was a ball, followed by a slower curving pitch that the batter hit foul. The next curving pitch missed for a ball, making the count two balls and two strikes.",
+      "learning": "Two early fastballs were strikes, giving the batter a 0\u20112 count. The pitcher then missed the zone with a fastball ball, and a slower slurve resulted in a foul. A subsequent slurve missed for a ball, tying the count at 2\u20112.",
+      "regular": "After dropping two fastball strikes to get an early 0\u20112 count, the pitcher slipped a fastball ball, then mixed in a slower slurve that fouled before the next slurve sailed for a ball, leveling the battle at 2\u20112.",
+      "expert": "The pitcher opened with two fastball strikes, then delivered a fastball ball, shifting the count to 0\u20112. Introducing a slower slurve that fouled, he followed with another slurve that missed the zone, advancing the count to 2\u20112 and suggesting a tempo change."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "complete": true,
+    "elapsed_seconds": 11.69
+  },
+  "6": {
+    "commentary_by_level": {
+      "novice": "Soroka threw two fast pitches that were strikes, giving the batter two strikes and no balls. He then threw a third fast pitch that was a ball, switched to a curving pitch that was fouled, threw another ball, and finished with another foul, leaving the count at two balls and two strikes.",
+      "learning": "Soroka started with two called strikes on four\u2011seam fastballs, creating a 0\u20112 count. After a ball on the third fastball, he moved to slurves, which produced a foul, a ball, and another foul, advancing the count to 2\u20112.",
+      "regular": "Soroka opened the at\u2011bat with two straight fastball strikes, putting the hitter down 0\u20112. After a ball on the third fastball, he switched to slurves, generating a foul, a ball, and another foul, tying the count at two balls and two strikes.",
+      "expert": "Soroka began with two four\u2011seam fastball strikes (0\u20112). Following a ball on the third fastball, he shifted to slurves, resulting in a foul, a ball, and a second foul, moving the count to 2\u20112."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "complete": true,
+    "elapsed_seconds": 12.66
+  },
+  "7": {
+    "commentary_by_level": {
+      "novice": "Soroka threw two quick pitches that the umpire called strikes, then a third pitch that was a ball. He switched to a slurve, which the batter hit foul, then a ball, and two more fouls, leaving the batter with a tied count of two balls and two strikes after seven throws.",
+      "learning": "Soroka started with two fastball strikes, then a ball on the third pitch. He followed with a slurve that produced a foul, a ball, and two additional fouls, so the count now sits at 2\u20112 after seven pitches, meaning the batter has two balls and two strikes.",
+      "regular": "Soroka opened the at\u2011bat with two strike\u2011calling fastballs, then fell behind with a ball. He tossed a slurve that flirted with the zone\u2014a foul, a ball, and two more fouls\u2014bringing the duel to a tense 2\u20112 count after seven pitches.",
+      "expert": "Soroka\u2019s early fastball usage yielded two consecutive strikes before a ball disrupted the rhythm. He then deployed a slurve, generating a foul, a ball, and two subsequent fouls, resulting in a balanced 2\u20112 count after seven pitches, highlighting a shift from velocity to movement in his approach."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "complete": true,
+    "elapsed_seconds": 12.86
+  },
+  "8": {
+    "commentary_by_level": {
+      "novice": "Soroka began the at\u2011bat with two strikes, then threw a slower breaking pitch that resulted in a ball, a foul swing, two more balls and another foul, tying the count at two balls and two strikes. He followed with a changeup that added a third ball, making it three\u2011two.",
+      "learning": "Soroka opened with two called strikes, giving a 0\u20112 count. He mixed in a slower slurve that produced a ball, a foul, two additional balls and another foul, moving the count to 2\u20112. The eighth pitch, a changeup, was a ball, raising the count to 3\u20112.",
+      "regular": "Soroka started aggressively with two four\u2011seam fastball strikes, then shifted to a slower slurve that churned out a ball, a foul, two balls and another foul, evening the count at 2\u20112. He capped the sequence with a changeup ball, pushing the count to a full 3\u20112.",
+      "expert": "After establishing a 0\u20112 count with two called\u2011strike four\u2011seam fastballs, Soroka introduced a slower slurve series that generated a ball, a foul, two additional balls and a foul, tying the count at 2\u20112. An eighth\u2011pitch changeup added a ball, advancing the count to 3\u20112, reflecting a deliberate pitch\u2011mix strategy."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "complete": true,
+    "elapsed_seconds": 13.25
+  },
+  "10": {
+    "commentary_by_level": {
+      "novice": "The pitcher began with two strikes, then threw slower pitches that caused a few balls and fouls, moving the count to three balls and two strikes. On the last pitch, a fastball, the batter got a hit, putting the ball safely in play.",
+      "learning": "He opened with two called\u2011strike fastballs, giving the batter an 0\u20132 count. The pitcher then mixed slower off\u2011speed pitches that produced balls and fouls, advancing the count to 3\u20112. He finished with a fastball, and the batter recorded a hit.",
+      "regular": "Starting with two strike\u2011calling fastballs, the pitcher switched to slower off\u2011speed stuff that generated balls and fouls, building the count to a full 3\u20112. He then returned to the fastball, and the batter capitalized with a hit, turning the sequence into a decisive moment.",
+      "expert": "After two initial strike\u2011calling fastballs, the pitcher introduced slower off\u2011speed pitches that yielded balls and fouls, methodically advancing the count to 3\u20112. Reverting to the fastball at the end, he induced a hit, showcasing a classic fastball\u2011off\u2011speed\u2011fastball pattern."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "complete": true,
+    "elapsed_seconds": 11.57
+  },
+  "9": {
+    "commentary_by_level": {
+      "novice": "The pitcher threw two fastballs that were strikes, then a fastball that was a ball, making the count one ball and two strikes. He followed with slower slurves and a changeup, causing fouls and more balls, stretching the at\u2011bat to nine pitches and a 3\u20112 count.",
+      "learning": "He started with two fastball strikes, then delivered a high fastball ball that moved the count to 1\u20112. After that, off\u2011speed slurves and a changeup produced fouls and balls, extending the at\u2011bat to pitch nine and a tight 3\u20112 count.",
+      "regular": "Opening with two strike\u2011calling fastballs, the pitcher then tossed a high fastball ball to sit at a 1\u20112 count. He switched to slurves and a changeup, battling fouls and balls, and the duel stretched to nine pitches, ending at a close 3\u20112 count.",
+      "expert": "The sequence began with two strike\u2011calling fastballs, followed by a high fastball ball that set a 1\u20112 count. He then introduced off\u2011speed slurves and a changeup, generating fouls and balls, and the at\u2011bat extended to pitch nine, concluding at a 3\u20112 count."
+    },
+    "evidence_pitches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "complete": true,
+    "elapsed_seconds": 36.64
+  }
+}
