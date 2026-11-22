@@ -25,6 +25,17 @@ app = FastAPI(
     servers=[{"url": "https://diamondiq-api.onrender.com"}]
 )
 
+from fastapi.middleware.cors import CORSMiddleware
+
+# Allow the web prototype (any origin) to READ data. Only GET is allowed,
+# so browsers can't call POST endpoints like /snapshot/redeem.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET"],
+    allow_headers=[],
+)
+
 # ---------------------------------------------------------------------------
 # Redemption history
 # ---------------------------------------------------------------------------
